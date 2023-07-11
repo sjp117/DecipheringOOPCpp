@@ -1,0 +1,14 @@
+# Ignore all
+*
+
+# Do not ignore directories
+!*/
+
+# Do not ignore C++ source code files
+!*.cpp
+
+# Do not ignore README file
+!/README.md
+
+# Do not ignore gitignore file
+!/.gitignore

@@ -27,9 +27,7 @@ int main()
 
     // define books and array of books
     Book b1, b2;
-    Book books[2];
-    books[0] = b1;
-    books[1] = b2;
+    Book books[2] = {b1, b2};
 
     // initialize books
     books[0].title = "Adventure of Badger";
@@ -40,7 +38,7 @@ int main()
     books[1].author = "Bob Lee";
     books[1].numberOfPages = 324;
 
-    // ask for user choice
+    // prompt for user choice
     std::cout << "Choose book 1 or 2: ";
     std::cin >> std::setw(1) >> choice;
     std::cout << std::flush; // I'm guessing it's proper to flush since it couldn't when asking for input.

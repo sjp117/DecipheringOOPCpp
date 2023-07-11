@@ -2,7 +2,7 @@
 #include <iomanip>
 #include <cstring>
 
-// simple const varaible declaration and initialization
+// simple const variable declaration and initialization
 // Conventional for constants known in compile time to be in allcaps.
 const int MAX = 50;
 

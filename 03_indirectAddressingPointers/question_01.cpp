@@ -53,41 +53,44 @@ int main()
     int size = 0;
 
     // define student variables
-    Student **students = nullptr;
+    const Student **students = nullptr;
+
+    // define array of void pointers, same size as students
+    const void **sPointer = nullptr;
 
     std::cout << "How many students? " << std::flush;
     std::cin >> size;
     std::cout << std::endl;
-    size--;
 
-    students = new Student *[size];
+    students = new const Student *[size];
+    sPointer = new const void *[size];
     for (int i = 0; i < size; i++)
     {
         students[i] = nullptr;
+        sPointer[i] = nullptr;
     }
-    const Student *constS = nullptr;
 
     // call ReadData() to input data
     for (int i = 0; i < size; i++)
     {
         students[i] = ReadData();
+        sPointer[i] = students[i];
     }
-    constS = ReadData();
 
     // call print function using default
     for (int i = 0; i < size; i++)
     {
         printD(students[i]);
+        printD(static_cast<const Student *>(sPointer[i]));
     }
-    printD(constS);
 
     // deallocate student pointers
     for (int i = 0; i < size; i++)
     {
         delete[] students[i];
+        delete[] static_cast<const Student *>(sPointer[i]);
     }
     delete[] students;
-    delete constS;
 
     return 0;
 }

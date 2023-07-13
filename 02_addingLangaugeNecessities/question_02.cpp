@@ -50,7 +50,7 @@ void printStudentInfo(Student student)
 
 int main()
 {
-    // define student variables and their array
+    // define student variables
     Student s1, s2, s3;
 
     // initialize student's data

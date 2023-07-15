@@ -19,7 +19,7 @@ public: // public members are accessible from any scope
     Student(); // default constructor
     Student(const std::string &, const std::string &, char, float, const std::string &, const char *);
     Student(const Student &); // copy constructor prototype
-    ~Student();               // destructor; I dont think this is needed because the default is adequate
+    ~Student();               // destructor;
     void Print() const;
 
     // inline function definitions
@@ -89,7 +89,7 @@ int main()
     Student s2("Alex", "Tost", 'A', 3.78, "C++", "674HOP");
 
     std::cout << s1.GetFirstName() << " " << s1.GetLastName() << " Enrolled in ";
-    std::cout << s1.GetCurrentCourse() << std::endl;
+    std::cout << s1.GetCurrentCourse() << " id: " << s1.GetStudentID() << std::endl;
     std::cout << s2.GetFirstName() << " " << s2.GetLastName() << " Enrolled in ";
     std::cout << s2.GetCurrentCourse() << std::endl;
 

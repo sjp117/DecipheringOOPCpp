@@ -1,4 +1,5 @@
-// Create a C++ program to encapsulate a Student
+// Using your Chapter 5, Exploring Classes in Detail, solution, create a C++ program to build an
+// inheritance hierarchy, generalizing Person as a base class from the derived class of Student.
 
 #include <iostream>
 #include <cstring>
@@ -8,8 +9,8 @@ class Person
 private:
     std::string firstName;
     std::string lastName;
-    char middleInitial;
-    std::string dob;
+    char middleInitial = '\0';
+    std::string dob = "00/00/0000";
 
 public:
     Person();
@@ -22,9 +23,9 @@ public:
     void Print() const;
 };
 
-Person::Person() : middleInitial('\0'), dob("00/00/0000")
-{
-}
+// Person::Person() : middleInitial(), dob()
+// {
+// }
 
 Person::Person(const std::string &fn, const std::string &ln, char mi, const std::string &bday) : firstName(fn), lastName(ln), middleInitial(mi), dob(bday)
 {
@@ -39,15 +40,11 @@ void Person::Print() const
     std::cout << GetFirstName() << " " << GetMiddleInitial() << ". " << GetLastName() << " was born in " << GetDateOfBirth() << std::endl;
 }
 
-class Student
+class Student : public Person
 {
 private:
-    std::string firstName;
-    std::string lastName;
-    char middleInitial;
-    std::string dob;
-    float gpa;
-    std::string currentCourse;
+    float gpa = 0.0;
+    std::string currentCourse = "NA";
     const char *studentID;  // constant data member
     static int numStudents; // status data member
 
@@ -61,9 +58,9 @@ public: // public members are accessible from any scope
     void Print() const;
 
     // inline function definitions
-    const std::string &GetFirstName() const { return firstName; }
-    const std::string &GetLastName() const { return lastName; }
-    char GetMiddleInitial() const { return middleInitial; }
+    // const std::string &GetFirstName() const { return firstName; }
+    // const std::string &GetLastName() const { return lastName; }
+    // char GetMiddleInitial() const { return middleInitial; }
     float GetGpa() const { return gpa; } // access function for private data mbr
     const std::string &GetCurrentCourse() const { return currentCourse; }
     const char *GetStudentID() const { return studentID; }
@@ -86,12 +83,12 @@ inline void Student::SetCurrentCourse(const std::string &c)
 }
 
 // constructor with member initialization list to set data members
-Student::Student() : middleInitial('\0'), dob("00/00/0000"), gpa(0.0), studentID(nullptr)
+Student::Student() : studentID(nullptr)
 {
     numStudents++;
 }
 
-Student::Student(const std::string &fn, const std::string &ln, char mi, const std::string &dob, float avg, const std::string &course, const char *id) : firstName(fn), lastName(ln), middleInitial(mi), gpa(avg), currentCourse(course)
+Student::Student(const std::string &fn, const std::string &ln, char mi, const std::string &dob, float avg, const std::string &course, const char *id) : gpa(avg), currentCourse(course)
 {
     char *temp = new char[strlen(id) + 1];
     // strcpy(studentID, id); // studentID cannot be an l-value
@@ -99,7 +96,7 @@ Student::Student(const std::string &fn, const std::string &ln, char mi, const st
     numStudents++;
 }
 
-Student::Student(const Student &s) : firstName(s.firstName), lastName(s.lastName), middleInitial(s.middleInitial), dob(s.dob), gpa(s.gpa), currentCourse(s.currentCourse)
+Student::Student(const Student &s) : gpa(s.gpa), currentCourse(s.currentCourse)
 {
     char *temp = new char[strlen(s.studentID) + 1];
     // strcpy(studentID, id); // studentID cannot be an l-value
@@ -107,7 +104,7 @@ Student::Student(const Student &s) : firstName(s.firstName), lastName(s.lastName
     numStudents++;
 }
 
-Student::Student(const Person &p, const char *id) : firstName(p.GetFirstName()), lastName(p.GetLastName()), middleInitial(p.GetMiddleInitial()), dob(p.GetDateOfBirth()), gpa(0.0), currentCourse("NA")
+Student::Student(const Person &p, const char *id)
 {
     char *temp = new char[strlen(id) + 1];
     // strcpy(studentID, id); // studentID cannot be an l-value

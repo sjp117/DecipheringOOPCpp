@@ -21,7 +21,7 @@ public:
     // copy constructors and destructors are provided by default (automatically); so omitted
 
     // inline function definitions
-    const std::string &GetFistName() const { return firstName; }
+    const std::string &GetFirstName() const { return firstName; }
     const std::string &GetLastName() const { return lastName; }
     const std::string &GetTitle() const { return title; }
     char GetMiddleInitial() const { return middleInitial; }
@@ -121,7 +121,7 @@ Student::~Student()
 void Student::Print() const
 {
     // private members of person are not accessible within the scope of Student, so we use access functions
-    std::cout << GetTitle() << " " << GetFistName() << " " << GetMiddleInitial() << ". ";
+    std::cout << GetTitle() << " " << GetFirstName() << " " << GetMiddleInitial() << ". ";
     std::cout << GetLastName() << " with id: " << studentID << " gpa: " << std::setprecision(2) << gpa;
     std::cout << " course: " << currentCourse << std::endl;
 }

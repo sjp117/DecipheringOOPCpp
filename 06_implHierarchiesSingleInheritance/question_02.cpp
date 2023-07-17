@@ -1,4 +1,7 @@
-// Using a protected base class to implement one class in terms of another
+// (Optional) Complete the class hierarchy, which includes LinkList, Queue, and
+// PriorityQueue, using the online code as a basis.
+
+// Incomplete
 
 #include <iostream>
 
@@ -98,6 +101,33 @@ void LinkList::InsertBeforeItem(Item *newItem, Item *existing)
     }
 }
 
+LinkListElement *LinkList::RemoveSpecificItem(Item *item)
+{
+    // add implementation
+    LinkListElement *temp = nullptr;
+    // assumes item to insert before exists
+    current = head;
+    if (*(static_cast<Item *>(current->GetData())) == *item)
+        InsertAtFront(newItem);
+    else
+    {
+        while (*(static_cast<Item *>(current->GetData())) != *item)
+        {
+            temp = current;
+            current = current->GetNext();
+        }
+
+        toAdd = new LinkListElement(newItem); // wrap an item in a LinkListElement
+        temp->SetNext(toAdd);
+        toAdd->SetNext(current);
+    }
+}
+
+void LinkList::DeleteSpecificItem(Item *item)
+{
+    // add implementation
+}
+
 void LinkList::InsertAtEnd(Item *item)
 {
     if (!head)
@@ -110,6 +140,19 @@ void LinkList::InsertAtEnd(Item *item)
         tail->SetNext(new LinkListElement(item));
         tail = tail->GetNext();
     }
+}
+
+LinkListElement *LinkList::RemoveAtEnd()
+{
+    LinkListElement *remove = tail;
+    tail = tail->GetNext(); // head = head->next;
+    current = tail;         // reset current for use elsewhere
+    return remove;
+}
+
+void LinkList::DeleteAtEnd()
+{
+    // add implementation
 }
 
 void LinkList::Print() const

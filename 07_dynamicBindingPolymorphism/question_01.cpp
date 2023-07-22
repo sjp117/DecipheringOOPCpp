@@ -274,6 +274,8 @@ int main()
     people[3] = new NonDegreeStudent("Giselle", "LeBran", 'R', "Miss", "05/02/2004", 3.3, "C++", "674HOP");
     people[4] = new Person("Linus", "Van Pelt", 'S', "Mr.", "08/11/2004");
 
+    std::cout << "There are: " << Student::GetNumberStudents() << " students" << std::endl;
+
     Student *students[MAXStudents] = { }; // initialize with nullptr
     // students[0] = new Student("Hana", "Sato", 'U', "Mr.", "12/04/2001", 3.8, "C++", "178PSU");
     // students[1] = new GradStudent("Sara", "Kato", 'B', "Ms.", "03/22/2003", 3.9, "OOP w/ C++", "272PSU",
@@ -310,7 +312,7 @@ int main()
         students[i]->Print();
     }
 
-    std::cout<< std::endl;
+    std::cout << std::endl;
 
     // destruction of people pointers
     for (int i = 0; i < MAX; i++)

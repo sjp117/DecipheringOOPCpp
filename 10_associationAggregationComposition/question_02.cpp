@@ -3,7 +3,6 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
-#include <format>
 
 class Student; // forward declaration
 
@@ -225,7 +224,7 @@ Student::Student(const std::string &fn, const std::string &ln, char mi, const st
     : Person(fn, ln, mi, t), gpa(avg), studentID(id)
 {
     SetCurrentCourse(course);
-    *this->univ = univ; // "Called C++ object pointer is null" warning but compiles and runs
+    this->univ = &univ; // "Called C++ object pointer is null" warning but compiles and runs
     univ.EnrollStudent(this);
     numStudents++;
 }
@@ -280,7 +279,7 @@ int main()
 
     Student s1("Gabby", "Doone", 'A', "Miss", 3.85, c1, "4225GWU", u1);
     Student s2("Giselle", "LeBrun", 'A', "Ms.", 3.45, c2, "1227GWU", &u2);
-    Student s3("Eve", "Kendall", 'B', "Ms.", 3.71, c2, "5542GWU", u1);
+    Student s3("Eve", "Kendall", 'B', "Ms.", 3.71, c3, "5542GWU", u1);
 
     std::cout << s1.GetFirstName() << " " << s1.GetLastName() << " attends " << s1.GetUniversity()
               << " takes: " << s1.GetCurrentCourse() << std::endl;
@@ -297,6 +296,7 @@ int main()
 
     std::cout << "# of students taking " << c1->GetCourseName() << " is: " << c1->GetStudentCount() << std::endl;
     std::cout << "# of students taking " << c2->GetCourseName() << " is: " << c2->GetStudentCount() << std::endl;
+    std::cout << "# of students taking " << c3->GetCourseName() << " is: " << c3->GetStudentCount() << std::endl;
 
     u1->PrintStudents();
     u2.PrintStudents();
@@ -304,6 +304,7 @@ int main()
     delete u1;
     delete c1;
     delete c2;
+    delete c3;
 
     return 0;
 }
